@@ -1,4 +1,5 @@
 import pickle
+import time
 from rtree import index
 
 QUERY = [
@@ -40,25 +41,30 @@ def parse_row(d):
     new_list = [x for pair in zip(l,l) for x in pair]
     return tuple(new_list)
 
-def main(rows, query, k):
+
+def make_index(rows):
     p = index.Property()
     p.dimension = 128
     p.dat_extension = "data"
     p.idx_extension = "index"
     idx = index.Index('3d_index',properties=p, interleaved = False)
-
     c_id = 0
     for key in rows:
-        idx.insert(c_id, rows[key])
+        idx.insert(c_id, rows[key], key)
         c_id+=1
-    return list(idx.nearest(parse_row(query), k))
+
+    return idx
 
 
 with open("result.pkl", "rb") as f:
     data = pickle.load(f)
     new_list = {}
     for d in data:
-        print(d[1])
         new_list[d[0]] = parse_row(d[1])
 
-    main(new_list, QUERY, 100)
+    idx = make_index(new_list)
+    list_attempts = [100, 200, 400, 800, 1600, 3200, 6400, 12800] 
+    for a in list_attempts:
+        start_time = time.time()
+        res = list(idx.nearest(parse_row(QUERY), a))
+        print("--- %s seconds ---" % (time.time() - start_time))
