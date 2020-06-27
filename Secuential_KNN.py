@@ -26,8 +26,7 @@ class Secuential_KNN:
 			self.faces = pickle.load(f)
 
 	def KNN_Faces_ED(self,image_path,n):
-		img = face_recognition.load_image_file(image_path)
-		vec = face_recognition.api.face_encodings(img)
+		vec = read_Face(image_path)
 		if len(vec) == 0:
 			print("The image couldn't be identified")
 		else:
