@@ -30,7 +30,7 @@ class Secuential_KNN:
 		if len(vec) == 0:
 			print("The image couldn't be identified")
 		else:
-			ed_order = sorted(self.faces,key=lambda x: ED(vec[0],x[1]))
+			ed_order = sorted(self.faces,key = lambda x: ED(vec[0],x[1]))
 		return [item[0] for item in ed_order[:n]]
 
 	def KNN_Faces_MD(self,image_path,n):
