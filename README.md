@@ -6,7 +6,7 @@ The face recognition library for python plays an important role in this project,
 
 # Preprocessing
 
-Given a database with >200mb worth of pictures of known people, sometimes with more than one photo of the same individual, we need to get every single vector for each picture and associate the corresponding name for each vector. Then, we write the resulting list of lists to disk so we only do this operation once. We perform this in [face_recognition.py](./face_recognition.py)
+Given a database with >200mb worth of pictures of known people, sometimes with more than one photo of the same individual, we need to get every single vector for each picture and associate the corresponding name for each vector. Then, we write the resulting list of lists to disk so we only do this operation once. We perform this in [faceRecognition.py](./faceRecognition.py)
 
 # KNN
 
