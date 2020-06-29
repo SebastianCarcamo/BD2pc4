@@ -5,7 +5,6 @@ from Secuential_KNN.py import read_Face
 
 QUERY = read_Face('./unknownFaces/jennifer_lopez.jpg')
 
-
 def parse_row(d):
     l = d
     new_list = [x for pair in zip(l,l) for x in pair]

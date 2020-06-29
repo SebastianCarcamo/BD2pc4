@@ -6,7 +6,11 @@ from django.template import Context, loader
 
 import datetime
 
+from src.sequential_knn import SequentialKNN
+
 AUX_MEDIA_DIR = 'store/aux/'
+
+sequential_knn = SequentialKNN('store/models/points.pkl')
 
 def index(request):
 	template = loader.get_template("index.html")
@@ -16,11 +20,20 @@ def index(request):
 @require_http_methods(["POST"])
 def search(request):
 	image = request.FILES.get('file')
+	k = int(request.POST.get('k'))
 
 	file_path = AUX_MEDIA_DIR + str(datetime.datetime.now().time()) + '.png'
 	filename = default_storage.save(file_path, image)
 
+	nns = sequential_knn.KNN_Faces_ED(filename, k)
+
 	default_storage.delete(file_path)
 
-	return JsonResponse({'status' : 'success'})
+	freq = {}
+	for face in nns:
+		if face not in freq:
+			freq[face] = 0
+		freq[face] += 1
+
+	return JsonResponse({'nns' : freq})
 
