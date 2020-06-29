@@ -9,10 +9,10 @@ The face recognition library for python plays an important role in this project,
 Given a database with >200mb worth of pictures of known people, sometimes with more than one photo of the same individual, we need to get every single vector for each picture and associate the corresponding name for each vector. Then, we write the resulting list of lists to disk so we only do this operation once. We perform this in [faceRecognition.py](./faceRecognition.py)
 
 # KNN
-
-Here we compare the times it takes on a varying N sized database to search for the KNN. In our
-examples we will use K = 10. The tests are on KNN search based off an RTree or in a sequential
-manner.
+KNN is a method used for classification and regression taks. In this project it will serve the role as
+a classifier. The K nearest neighbors should return points (or faces in this case) that are similar
+in the way of the category of the first.Here we compare the times it takes on a varying N sized database to search for the KNN. In our
+examples we will use K = 10, or 10 most similar faces. TThe speed tests is done in a KNN implemented sequentially and then the use of a support multidimentional indexing data structure called RTree. Here we compare efficient are.
 
 ## Sequential
 ### Implementation
@@ -40,10 +40,11 @@ Using these results, we can conclude that using Euclidean distance is slightly m
 It's worth noting that we do not have a priority queue where we insert each element since theoretically, the cost of pushing an element into a priority queue has a cost of log(n) making it a total cost of nlog(n) to insert the whole list. Compared to using a sorting algorithm, the cost is the same. The implementation can be seen [here](./Secuential_KNN.py)
 
 ## RTree
-Here we used the python libari *rtree* which allows for easy RTree creation and queuing.
+We will use the multimentional indexing structure RTree commonly used for spatial contents. However we know that a vector is finally a point in a D dimensional
+space where D is the length of the vectore. By this logic the RTree should prove usefull for our propouse. To implement this we used the python libary *rtree* which allows for easy RTree creation and queuing.
 
 ### Implementation
-We read the result vectors and create an RTree with a multidimentional index of 128 dimentions, when
+We read the result vectors and create an RTree with a multidimentional index of 128 dimentions, we
 then proceed to insert each vector as a *region* of area 1 (point) inside the tree. This is done for
 all test values of N (100, 200, 400, ... ,12800) finally we run a query, that is a random vector
 that was chosen beforehand, for the knn (we use k = 10). Again, the implementation can be seen [here](./rtree_knn.py)
