@@ -68,7 +68,7 @@ Given different values *N* that represents the size of the collection, we timed 
 
 
 
-These are the results for the different values of N.
+These are the results for the different values of N.  
 100: 0.0006661415100097656 seconds  
 200: 0.0004992485046386719 seconds   
 400: 0.0010790824890136719 seconds   
