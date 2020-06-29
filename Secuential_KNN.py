@@ -50,19 +50,19 @@ class Secuential_KNN:
 ####################################
 sknn = Secuential_KNN('result.pkl')
 
-print("ED:")
-print(sknn.KNN_Faces_ED('./unknownFaces/jennifer_lopez.jpg',16))
-print("--------------------------------------------")
-print("MD:")
-print(sknn.KNN_Faces_MD('./unknownFaces/jennifer_lopez.jpg',16))
+# print("ED:")
+# print(sknn.KNN_Faces_ED('./unknownFaces/jennifer_lopez.jpg',16))
+# print("--------------------------------------------")
+# print("MD:")
+# print(sknn.KNN_Faces_MD('./unknownFaces/jennifer_lopez.jpg',16))
 ###################################
 
 #Times
 ###################################
-# sizes = [100,200,400,800,1600,3200,6400,12800]
+sizes = [100,200,400,800,1600,3200,6400,12800]
 
-# for s in sizes:
-# 	sknn.resize_partition(s)
-# 	start_time = time.time()
-# 	sknn.KNN_Faces_ED('./unknownFaces/nicole_kidman.jpg',19)
-# 	print("--- %s seconds ---" % (time.time() - start_time))
+for s in sizes:
+	sknn.resize_partition(s)
+	start_time = time.time()
+	sknn.KNN_Faces_ED('./unknownFaces/nicole_kidman.jpg',19)
+	print("--- %s seconds ---" % (time.time() - start_time))
