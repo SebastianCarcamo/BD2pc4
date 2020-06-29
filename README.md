@@ -64,16 +64,3 @@ Given different values *N* that represents the size of the collection, we timed 
 | *N* = 6400  | 1.1493    | 1.1610         |
 | *N* = 12800 | 1.5023    | 1.4575         |
 
-## Conclusion
-
-
-
-These are the results for the different values of N.  
-100: 0.0006661415100097656 seconds  
-200: 0.0004992485046386719 seconds   
-400: 0.0010790824890136719 seconds   
-800: 0.0012073516845703125 seconds   
-1600: 0.0020966529846191406 seconds  
-3200: 0.005741596221923828 seconds   
-6400: 0.015937089920043945 seconds   
-12800: 0.03295302391052246 seconds   
